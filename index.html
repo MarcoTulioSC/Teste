@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Contagem Regressiva</title>
+<title>Contagem</title>
 </head>
 <body>
 
@@ -13,15 +13,15 @@
 const url = "https://script.google.com/macros/s/AKfycbz9a-VMBBfqwLyQn9GhjtsEOJ6CD2NRdHS0UvsZkhaE8VWwPcTQgohlDkNvjP-E6cgf/exec";
 
 fetch(url)
-.then(res => res.json())
-.then(dados => {
+.then(r => r.json())
+.then(data => {
 
-const dataProva = new Date(dados.prova);
+const prova = new Date(data.prova);
 
 function atualizar(){
 
 let agora = new Date();
-let diff = dataProva - agora;
+let diff = prova - agora;
 
 let dias = Math.floor(diff/(1000*60*60*24));
 let horas = Math.floor((diff/(1000*60*60))%24);
@@ -29,10 +29,11 @@ let minutos = Math.floor((diff/(1000*60))%60);
 let segundos = Math.floor((diff/1000)%60);
 
 document.getElementById("contador").innerHTML =
-dias + " dias " + horas + "h " + minutos + "m " + segundos + "s";
+dias+" dias "+horas+"h "+minutos+"m "+segundos+"s";
 
 }
 
+atualizar();
 setInterval(atualizar,1000);
 
 });
