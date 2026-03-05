@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contagem Regressiva</title>
+</head>
+<body>
+
+<h1 id="contador">Carregando...</h1>
+
+<script>
+
+const url = "AKfycbwfGOVkJm-ssL56uZnmVMlvMg5ZzGpxsJzIbaH4rB2OeU2woJHnr017mS5OX5sqx-dA";
+
+fetch(url)
+.then(res => res.json())
+.then(dados => {
+
+const dataProva = new Date(dados.prova);
+
+function atualizar(){
+
+let agora = new Date();
+let diff = dataProva - agora;
+
+let dias = Math.floor(diff/(1000*60*60*24));
+let horas = Math.floor((diff/(1000*60*60))%24);
+let minutos = Math.floor((diff/(1000*60))%60);
+let segundos = Math.floor((diff/1000)%60);
+
+document.getElementById("contador").innerHTML =
+dias + " dias " + horas + "h " + minutos + "m " + segundos + "s";
+
+}
+
+setInterval(atualizar,1000);
+
+});
+
+</script>
+
+</body>
+</html>
